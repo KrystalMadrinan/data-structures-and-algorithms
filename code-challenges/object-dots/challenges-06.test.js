@@ -13,7 +13,7 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 };
 
 const getCourseKeys = (obj) => {
- return Object.keys(courseInfo);
+  return Object.keys(courseInfo);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  
+
 
 };
 
@@ -113,7 +113,7 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  return arr.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
