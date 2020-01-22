@@ -90,7 +90,13 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-
+// an empty array is already false and values are true - got help
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name === character) {
+      return Object.values(arr[i])[2];
+      //the 2 is children
+    }
+  }
 
 };
 
@@ -103,7 +109,12 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name === character) {
+      return Object.entries(arr[i])[2][1].length > 0;
+      //objects made into own array so that's why you have to target 1 (the value of children in addtion to 2 which is children and the value) - got help
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,7 +124,18 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  return arr.length;
+  // used spread syntax - got help
+  let array = [];
+  Object.values(arr).forEach(characters => {
+    array.push(characters.name);
+    if (characters.spouse) {
+      array.push(characters.spouse);
+    }
+    if (characters.children.length > 0) {
+      array.push(...characters.children);
+    }
+  })
+  return array.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -190,7 +212,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
   });
@@ -200,7 +222,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return the number of characters in the array', () => {
     expect(totalCharacters(characters)).toStrictEqual(26);
   });
