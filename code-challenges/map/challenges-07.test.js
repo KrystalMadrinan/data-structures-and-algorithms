@@ -11,7 +11,15 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 ------------------------------------------------------------------------------------------------ */
 
 const forLoopTwoToThe = (arr) => {
-  
+
+  let newarray = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let squared = Math.pow(2, arr[i]);
+    newarray.push(squared);
+  }
+  return newarray;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -21,7 +29,13 @@ Write a function named forEachTwoToThe that produces the same output as your for
 ------------------------------------------------------------------------------------------------ */
 
 const forEachTwoToThe = (arr) => {
-  // Solution code here...
+
+  let foreacharray = [];
+
+  arr.forEach(element => {
+    foreacharray.push(Math.pow(2, element));
+  })
+  return foreacharray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -31,7 +45,12 @@ Write a function named mapTwoToThe that produces the same output as your forLoop
 ------------------------------------------------------------------------------------------------ */
 
 const mapTwoToThe = (arr) => {
-  // Solution code here...
+  let foreacharray = [];
+
+  arr.map(element => {
+    foreacharray.push(Math.pow(2, element));
+  })
+  return foreacharray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -45,7 +64,14 @@ For example: charCode(['h','i']) returns [104, 105].
 ------------------------------------------------------------------------------------------------ */
 
 const charCode = (arr) => {
-  // Solution code here...
+
+  let chararray = [];
+
+  arr.map(char => {
+    let cahrit = char.charCodeAt();
+    chararray.push(cahrit);
+  })
+  return chararray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,8 +85,25 @@ For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 ------------------------------------------------------------------------------------------------ */
 
 const evenOdd = (arr) => {
-  // Solution code here...
+
+  let fivearray = [];
+
+  arr.map(element => {
+    if (element % 2 === 0) {
+      fivearray.push('even');
+    } else if (element % 2 === 1){
+      fivearray.push('odd');
+    } else {
+      fivearray.push('N/A');
+    }
+  })
+  return fivearray;
+
 };
+//make array
+//if statement in .map
+//if the elements in arr are odd or even, the new array will have strings of 'odd' or 'even' depending on the original array. If it's not a number, else it would be 'N/A'.
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -105,7 +148,12 @@ const snorlaxAbilities = {
 };
 
 const extractAbilities = (arr) => {
-  // Solution code here...
+
+  return arr.map(lax => {
+    let name = lax.ability.name
+    return name;
+  })
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -121,15 +169,7 @@ Here is an example of a single array element: { name: 'speed', total: 35 }
 ------------------------------------------------------------------------------------------------ */
 
 const snorlaxStats = {
-  stats: [
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/6/',
-        name: 'speed',
-      },
-      effort: 5,
-      baseStat: 30,
-    },
+  stats: [{stat: {url: 'https://pokeapi.co/api/v2/stat/6/',name: 'speed',},effort: 5,baseStat: 30,},
     {
       stat: {
         url: 'https://pokeapi.co/api/v2/stat/5/',
@@ -152,7 +192,18 @@ const snorlaxStats = {
 };
 
 const extractStats = (arr) => {
-  // Solution code here...
+
+  let objects = [];
+
+  arr.map(stats => {
+    let snorb = new Object();
+    snorb.name = stats.stat.name;
+    snorb.total = stats.effort + stats.baseStat;
+    objects.push(snorb);
+
+  })
+  return objects;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -177,7 +228,7 @@ describe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return two raised to the power of the integer', () => {
     expect(forEachTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
     expect(forEachTwoToThe([0, 4, 5]).length).toStrictEqual(3);
@@ -188,7 +239,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return two raised to the power of the integer', () => {
     expect(mapTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
     expect(mapTwoToThe([0, 4, 5]).length).toStrictEqual(3);
@@ -199,14 +250,14 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return an array containing the character code for each letter', () => {
     expect(charCode(['C', 'o', 'd', 'e', '3', '0', '1'])).toStrictEqual([ 67, 111, 100, 101, 51, 48, 49 ]);
     expect(charCode(['C', 'o', 'd', 'e', '3', '0', '1']).length).toStrictEqual(7);
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return an array containing the keys from an object', () => {
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541])).toStrictEqual([ 'odd', 'even', 'even', 'even', 'odd', 'odd', 'even', 'odd' ]);
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541]).length).toStrictEqual(8);
@@ -228,14 +279,14 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return an array containing only the ability names', () => {
     expect(extractAbilities(snorlaxAbilities.abilities)).toStrictEqual(['gluttony', 'cute charm', 'immunity']);
     expect(extractAbilities(snorlaxAbilities.abilities).length).toStrictEqual(3);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return an array containing objects with name and total values', () => {
     expect(extractStats(snorlaxStats.stats)).toStrictEqual([
       { name: 'speed', total: 35, },
