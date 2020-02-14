@@ -11,7 +11,17 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  // had help during code review
+  let integercount = 0;
+
+  input.forEach(array => {
+    array.forEach(element => {
+      if (target === element) {
+        integercount++
+      }
+    })
+  })
+  return integercount;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -25,7 +35,7 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
 const totalSum = (input) => {
-  var arraySum = 0;
+  let arraySum = 0;
 
   for (let i = 0; i < input.length; i++) {
     for (let k = 0; k < input[i].length; k++) {
@@ -48,7 +58,18 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  
+  // had help in code review
+  return input.map(element => {
+    return element.filter(num => {
+      // typeof because we want it to be an integer not anything else
+      return typeof(num) === 'number' && num % 5 === 0;
+    });
+    // mapping over the array returned in the above
+  }).map(array => {
+    return array.map(element => {
+      return Math.pow(2, element);
+    });
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,7 +135,13 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  // Solution code here...
+// had help during code review
+//doing the method on the parentheses means you're applying that method on whatever the result was of the previous function/method/etc
+  return data.filter(character => {
+    return character.gender === 'female' || character.gender === 'male';
+  }).map(character => {
+    return character.name;
+  }).join(' and ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,7 +151,15 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  // Solution code here...
+  // had help in code review
+  return data.reduce((accumulator, currentValue) => {
+    // parseInt because the heights were strings
+    if (parseInt(accumulator.height) < parseInt(currentValue.height)) {
+      return accumulator
+    } else {
+      return currentValue;
+    }
+  }).name;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -138,7 +173,7 @@ Run your tests from the console: jest challenges-10.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should return the number of times the input is in the nested arrays', () => {
     expect(count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]])).toStrictEqual(4);
     expect(count(3, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]])).toStrictEqual(2);
@@ -158,7 +193,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return numbers divisible by five, then raise two to the power of the resulting numbers', () => {
     expect(divisibleByFiveTwoToThePower([[10, 20, 5, 4], [5, 6, 7, 9], [1, 10, 3]])).toStrictEqual([[1024, 1048576, 32], [32], [1024]]);
   });
@@ -172,14 +207,14 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return only characters that are male or female', () => {
     expect(findMaleAndFemale(starWarsData)).toStrictEqual('Luke Skywalker and Darth Vader and Leia Organa');
     expect(findMaleAndFemale([{ name: 'person', gender: 'female' }, { gender: 'lol' }, { name: 'persontwo', gender: 'male' }])).toStrictEqual('person and persontwo');
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return the name of the shortest character', () => {
     expect(findShortest(starWarsData)).toStrictEqual('R2-D2');
   });
