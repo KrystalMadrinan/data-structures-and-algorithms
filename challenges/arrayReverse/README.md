@@ -14,6 +14,8 @@
 
 - https://medium.com/@josephcardillo/how-to-reverse-arrays-in-javascript-without-using-reverse-ae995904efbe
 
+- Second Iteration: Followed Jacob's demo in 401d36
+
 ## Solution
 
 ![whiteboard image](/assets/code-challenge-01-whiteboard.jpg)

@@ -12,3 +12,5 @@ let reverseArray = (array) => {
     }
     return newArray;
 }
+
+module.exports = reverseArray;
