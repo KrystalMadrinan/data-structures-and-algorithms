@@ -2,7 +2,10 @@
 <!-- Short summary or background information -->
     
 ## Links
-<!-- Link to pull request, passing tests, etc --> 
+
+### Sources:
+
+https://codeburst.io/linked-lists-in-javascript-es6-code-part-1-6dd349c3dcc3
     
 ## Challenge
 <!-- Description of the challenge -->
