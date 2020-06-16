@@ -73,6 +73,14 @@ class LinkedList {
     toString() {
 
     }
+
+    append(value) {
+
+    }
+
+    insertBefore(value, newVal) {
+        
+    }
 }
 
 
