@@ -65,12 +65,27 @@ class LinkedList {
             }
             return false;
         }
-        catch(error) {
+        catch (error) {
             console.error('NO VALUE FOUND IN TEST');
         }
     }
 
     toString() {
+        try {
+            let currentVal = this.head;
+            let str = '';
+
+            while (currentVal) {
+                str = str + `{ ${currentVal.val} } ->`;
+                currentVal.next = currentVal;
+            }
+            str = str + 'NULL';
+            console.log(str);
+            return str;
+        }
+        catch (error) {
+            console.error('NO STRING RETURNED');
+        }
 
     }
 
